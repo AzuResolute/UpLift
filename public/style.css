@@ -28,3 +28,7 @@ form div {
   width: 100%;
   background-size: cover;
 }
+
+#logo img {
+  padding-top: 20px;
+}

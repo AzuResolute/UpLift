@@ -12,8 +12,8 @@ export const UserHome = props => {
     // <div>
     //   <h3>Welcome, {email}</h3>
     // </div>
-    <div>
-      <img src="/images/my-logo.png"/>
+    <div className="col-md-12 d-flex justify-content-center align-items-center">
+      <img id="logo" src="/images/my-logo.png"/>
     </div>
   )
 }
