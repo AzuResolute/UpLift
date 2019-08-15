@@ -12,7 +12,7 @@ export const UserHome = props => {
     // <div>
     //   <h3>Welcome, {email}</h3>
     // </div>
-    <div className="homepage-container">
+    <div>
       <img src="/images/my-logo.png"/>
     </div>
   )
