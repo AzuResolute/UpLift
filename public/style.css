@@ -21,5 +21,10 @@ form div {
 }
 
 .homepage-container {
-  background-image: url('/images/bg.jpg')
+  background: url('/images/bg.jpg') center center no-repeat;
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  background-size: cover;
 }
