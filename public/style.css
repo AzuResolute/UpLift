@@ -32,3 +32,10 @@ form div {
 #logo img {
   padding-top: 20px;
 }
+
+.intro {
+  color: white;
+  font-weight: bolder;
+  font-family: cursive;
+  font-size: 0.9em;
+}
