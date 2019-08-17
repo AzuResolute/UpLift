@@ -21,7 +21,7 @@ form div {
 }
 
 .homepage-container {
-  background: url('/images/bg.jpg') center center no-repeat;
+  background: url('/images/casey-horner-light.jpg') center center no-repeat;
   position: absolute;
   top: 0px;
   bottom: 0px;
@@ -33,9 +33,16 @@ form div {
   padding-top: 20px;
 }
 
-.intro {
+.countdown-container {
   color: white;
   font-weight: bolder;
-  font-family: cursive;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.intro {
   font-size: 0.9em;
+}
+
+.clock {
+  font-size: 1.2em;
 }
