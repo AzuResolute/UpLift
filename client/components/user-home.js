@@ -19,6 +19,7 @@ export const UserHome = props => {
           <img id="logo" src="/images/my-logo.png"/>
         </div>
       </div> */}
+      {/* Create a future Calendar Component */}
       <CountdownComp />
     </div>
   )

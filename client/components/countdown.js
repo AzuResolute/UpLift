@@ -29,11 +29,12 @@ export default class CountdownComp extends Component {
       }
     
     render() {
-        const {message, targetDate, time} = this.state
+        const {message, targetDate, targetTitle, time} = this.state
         return (
             <div className="countdown-container text-center">
                 <div className="row ">
                     <div className="intro col-md-12">
+                        <p style={{'font-size': '4em'}}>{targetTitle}</p>
                         <p>{message}</p>
                         <p>Target Day: {targetDate.toLocaleDateString()}</p>
                     </div>
