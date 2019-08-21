@@ -11,13 +11,13 @@ export default class CountdownComp extends Component {
             message: 'You\'re almost there, Jan. Hold on baby ko...',
             targetTitle: 'Freedom from NYCRN',
             targetDate: new Date(2019, 9, 17),
-            // 'sub-goal': [
-            //     {
-            //         message: 'You\'re about to hang in your resignation yay!',
-            //         targetTitle: 'Road to 4 weeks',
-            //         targetDate: '09-10-2019'
-            //     }
-            // ]
+            'sub-goal': [
+                {
+                    message: 'You\'re about to hang in your resignation yay!',
+                    targetTitle: 'Road to 4 weeks',
+                    targetDate:  new Date(2019, 8, 20)
+                }
+            ]
         }
     }
 
