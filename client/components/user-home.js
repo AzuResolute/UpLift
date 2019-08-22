@@ -7,7 +7,7 @@ import CountdownComp from './countdown'
  * COMPONENT
  */
 export const UserHome = props => {
-  const {email} = props
+  // const {email} = props
 
   return (
     // <div>
