@@ -13,6 +13,8 @@ label {
 nav a {
   display: inline-block;
   margin: 1em;
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; 
 }
 
 form div {
@@ -35,6 +37,7 @@ form div {
 
 .countdown-container {
   color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; 
   font-weight: bolder;
   font-family: Georgia, 'Times New Roman', Times, serif;
 }
