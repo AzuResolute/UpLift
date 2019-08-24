@@ -8,6 +8,9 @@ const Goal = require('./goal')
  *    BlogPost.belongsTo(User)
  */
 
+// User has many goals
+// Goals has many subgoals
+
 /**
  * We'll export all of our models here, so that any time a module needs a model,
  * we can just require it from 'db/models'
