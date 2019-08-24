@@ -7,29 +7,33 @@ export default class CountdownComp extends Component {
         super(props)
     
         this.state = {
-            time: Date.now(),
-            message: 'You\'re almost there, Jan. Hold on baby ko...',
-            targetTitle: 'Freedom from NYCRN',
-            targetDate: new Date(2019, 9, 17),
-            'sub-goal': [
+            currentTime: Date.now(),
+            goals: [
                 {
-                    message: 'You\'re about to hang in your resignation yay!',
-                    targetTitle: 'Road to 4 weeks',
-                    targetDate:  new Date(2019, 8, 20)
+                    message: 'You\'re almost there, Jan. Hold on baby ko...',
+                    targetTitle: 'Freedom from NYCRN',
+                    targetDate: new Date(2019, 9, 17),
+                    'sub-goal': [
+                        {
+                            message: 'You\'re about to hang in your resignation yay!',
+                            targetTitle: 'Road to 4 weeks',
+                            targetDate:  new Date(2019, 8, 20)
+                        }
+                    ]
                 }
             ]
         }
     }
 
     componentDidMount() {
-        this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000);
+        this.interval = setInterval(() => this.setState({ currentTime: Date.now() }), 1000);
       }
       componentWillUnmount() {
         clearInterval(this.interval);
       }
     
     render() {
-        const {message, targetDate, targetTitle, time} = this.state
+        const {message, targetDate, targetTitle, currentTime} = this.state.goals[1]
         return (
             <div className="countdown-container text-center">
                 <div className="row ">
