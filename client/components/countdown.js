@@ -12,6 +12,7 @@ export default class CountdownComp extends Component {
                 {
                     message: 'You\'re almost there, Jan. Hold on baby ko...',
                     targetTitle: 'Freedom from NYCRN',
+                    startDate: new Date(2018, 10, 6),
                     targetDate: new Date(2019, 9, 17),
                     'sub-goal': [
                         {
@@ -33,7 +34,11 @@ export default class CountdownComp extends Component {
       }
     
     render() {
-        const {message, targetDate, targetTitle, currentTime} = this.state.goals[1]
+        if (this.state.goals.length === 0) {
+            return <div/>
+        }
+        const {currentTime} = this.state
+        const {message, targetDate, targetTitle, startDate} = this.state.goals[0]
         return (
             <div className="countdown-container text-center">
                 <div className="row ">
@@ -46,7 +51,7 @@ export default class CountdownComp extends Component {
                 <div className="row">
                     <div className="clock col-md-12">
                         <p style={{'font-size': '4em'}}>{Countdown(targetDate).toString()}</p>
-                        <p>{Countdown(new Date(2018, 10, 6), Date.now(), Countdown.DAYS).toString()} has passed</p>
+                        <p>{Countdown(startDate, Date.now(), Countdown.DAYS).toString()} has passed</p>
                         <p>{Countdown(targetDate, null, Countdown.DAYS).toString()} to go!</p>
                     </div>
                 </div>
