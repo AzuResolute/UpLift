@@ -22,6 +22,10 @@ form div {
   display: inline-block;
 }
 
+.global-container {
+
+}
+
 .homepage-container {
   background: url('/images/casey-horner-light.jpg') center center no-repeat;
   position: absolute;
@@ -29,6 +33,7 @@ form div {
   bottom: 0px;
   width: 100%;
   background-size: cover;
+  padding: 25px;
 }
 
 #logo img {

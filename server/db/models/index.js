@@ -1,15 +1,17 @@
 const User = require('./user')
 const Goal = require('./goal')
 
-/**
- * If we had any associations to make, this would be a great place to put them!
- * ex. if we had another model called BlogPost, we might say:
- *
- *    BlogPost.belongsTo(User)
- */
+Goal.belongsTo(User, {foreignKey: 'GoalID'})
+Goal.belongsToMany(Goal, {as: 'sub-goals', through: 'goal_sub-goal'})
+User.hasMany(Goal)
 
-// User has many goals
-// Goals has many subgoals
+// Pug.belongsToMany(Pug, {as: 'friends', through: 'pug_friend'})
+// Product.belongsTo(Category, {foreignKey: 'CategoryID'});
+// Category.hasMany(Product);
+// Order.belongsToMany(Product, {through: OrderDetails, foreignKey: 'OrderID'});
+// Product.belongsToMany(Order, {through: OrderDetails, foreignKey: 'ProductID'});
+// Order.belongsTo(Customer, {foreignKey: 'CustomerID'});
+// Customer.hasMany(Order);
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
