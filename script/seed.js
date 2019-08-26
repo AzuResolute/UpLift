@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, Goal} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
@@ -12,7 +12,26 @@ async function seed() {
   ])
 
   console.log(`seeded ${users.length} users`)
+
+  const goals = await Promise.all([
+      Goal.create({
+        title: 'Freedom from NYCRN',
+        message: 'You\'re almost there, Jan. Hold on baby ko...',
+        startDate: new Date(2018, 10, 6),
+        targetDate: new Date(2019, 9, 17)
+      }),
+      Goal.create({
+        title: 'Start at ITlize',
+        message: 'Launch pad ready, set, GO!',
+        targetDate: new Date(2019, 9, 17)
+      }),
+  ])
+
+  console.log(`seeded ${goals.length} goals`)
+
   console.log(`seeded successfully`)
+
+
 }
 
 async function runSeed() {

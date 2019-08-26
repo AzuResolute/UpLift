@@ -5,8 +5,11 @@ const Sequelize = require('sequelize')
 
 router.get('/', async (req, res, next) => {
     try {
-        const goals = await Goal.findAll()
-        res.send(goals)
+        const goals = await Goal.findAll({
+            id: 1
+        })
+        console.log(goals)
+        res.json(goals)
     } catch (error) {
         next(error)
     }
