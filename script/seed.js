@@ -25,12 +25,17 @@ async function seed() {
         message: 'Launch pad ready, set, GO!',
         targetDate: new Date(2019, 9, 17)
       }),
+      Goal.create({
+        title: 'Hand in Resignation',
+        message: 'The beginning of 4 weeks',
+        startDate: new Date(2018, 10, 6),
+        targetDate: new Date(2019, 8, 11)
+      })
   ])
 
   console.log(`seeded ${goals.length} goals`)
 
   console.log(`seeded successfully`)
-
 
 }
 

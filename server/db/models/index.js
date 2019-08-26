@@ -1,7 +1,7 @@
 const User = require('./user')
 const Goal = require('./goal')
 
-Goal.belongsTo(User, {foreignKey: 'GoalID'})
+Goal.belongsTo(User)
 Goal.belongsToMany(Goal, {as: 'sub-goals', through: 'goal_sub-goal'})
 User.hasMany(Goal)
 
