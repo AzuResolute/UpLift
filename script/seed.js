@@ -1,14 +1,15 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, Goal} = require('../server/db/models')
+const {User, Goal, Task} = require('../server/db/models')
 
 async function seed() {
   await db.sync({force: true})
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'czandelacruzjavier@gmail.com', password: '718190'})
+    User.create({email: 'czandelacruzjavier@gmail.com', password: '718190'}),
+    User.create({email: 'AzuResolute@gmail.com', password: '718190'})
   ])
 
   console.log(`seeded ${users.length} users`)
@@ -18,22 +19,33 @@ async function seed() {
         title: 'Freedom from NYCRN',
         message: 'You\'re almost there, Jan. Hold on baby ko...',
         startDate: new Date(2018, 10, 6),
-        targetDate: new Date(2019, 9, 17)
+        targetDate: new Date(2019, 9, 17),
+        userId: 1
       }),
       Goal.create({
         title: 'Start at ITlize',
         message: 'Launch pad ready, set, GO!',
-        targetDate: new Date(2019, 9, 17)
+        targetDate: new Date(2019, 9, 17),
+        userId: 2
       }),
       Goal.create({
         title: 'Hand in Resignation',
         message: 'The beginning of 4 weeks',
         startDate: new Date(2018, 10, 6),
-        targetDate: new Date(2019, 8, 11)
+        targetDate: new Date(2019, 8, 11),
+        userId: 1
       })
   ])
 
   console.log(`seeded ${goals.length} goals`)
+
+  const tasks = await Promise.all([
+    Task.create({
+
+    })
+  ])
+
+  console.log(`seeded ${tasks.length} goal-task relationships`)
 
   console.log(`seeded successfully`)
 

@@ -1,8 +1,9 @@
 const User = require('./user')
 const Goal = require('./goal')
+const Task = require('./task')
 
 Goal.belongsTo(User)
-Goal.belongsToMany(Goal, {as: 'sub-goals', through: 'goal_sub-goal'})
+Goal.belongsToMany(Goal, {as: 'task', through: Task})
 User.hasMany(Goal)
 
 // Pug.belongsToMany(Pug, {as: 'friends', through: 'pug_friend'})
@@ -20,5 +21,5 @@ User.hasMany(Goal)
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User, Goal
+  User, Goal, Task
 }
