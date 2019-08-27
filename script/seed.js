@@ -33,19 +33,20 @@ async function seed() {
         message: 'The beginning of 4 weeks',
         startDate: new Date(2018, 10, 6),
         targetDate: new Date(2019, 8, 11),
-        userId: 1
+        userId: 1,
+        parentGoalId: 1
       })
   ])
 
   console.log(`seeded ${goals.length} goals`)
 
-  const tasks = await Promise.all([
-    Task.create({
+  // const tasks = await Promise.all([
+  //   Task.create({
 
-    })
-  ])
+  //   })
+  // ])
 
-  console.log(`seeded ${tasks.length} goal-task relationships`)
+  // console.log(`seeded ${tasks.length} goal-task relationships`)
 
   console.log(`seeded successfully`)
 

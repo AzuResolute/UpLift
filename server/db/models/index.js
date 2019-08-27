@@ -3,8 +3,11 @@ const Goal = require('./goal')
 const Task = require('./task')
 
 Goal.belongsTo(User)
-Goal.belongsToMany(Goal, {as: 'task', through: Task})
 User.hasMany(Goal)
+
+Goal.belongsTo(Goal, {foreignKey: 'parentGoalId'})
+Goal.hasMany(Goal, {foreignKey: 'parentGoalId'})
+
 
 // Pug.belongsToMany(Pug, {as: 'friends', through: 'pug_friend'})
 // Product.belongsTo(Category, {foreignKey: 'CategoryID'});
