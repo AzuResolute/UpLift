@@ -28,6 +28,7 @@ form div {
 
 .homepage-container {
   background: url('/images/casey-horner-light.jpg') center center no-repeat;
+  background-attachment: fixed;
   position: absolute;
   top: 0px;
   bottom: 0px;
@@ -48,9 +49,9 @@ form div {
 }
 
 .intro {
-  font-size: 0.9em;
+  font-size: 2.5vw;
 }
 
 .clock {
-  font-size: 1.2em;
+  font-size: 2.5vw;
 }

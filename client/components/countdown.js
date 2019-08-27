@@ -43,14 +43,14 @@ export default class CountdownComp extends Component {
             <div className="countdown-container text-center">
                 <div className="row ">
                     <div className="intro col-md-12">
-                        <p style={{'font-size': '4em'}}>{targetTitle}</p>
+                        <p style={{'font-size': '2em'}}>{targetTitle}</p>
                         <p>{message}</p>
                         <p>Target Day: {targetDate.toLocaleDateString()}</p>
                     </div>
                 </div>
                 <div className="row">
                     <div className="clock col-md-12">
-                        <p style={{'font-size': '4em'}}>{Countdown(targetDate).toString()}</p>
+                        <p style={{'font-size': '1.75em'}}>{Countdown(targetDate).toString()}</p>
                         <p>{Countdown(startDate, Date.now(), Countdown.DAYS).toString()} has passed</p>
                         <p>{Countdown(targetDate, null, Countdown.DAYS).toString()} to go!</p>
                     </div>
