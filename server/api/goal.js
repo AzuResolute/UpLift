@@ -7,7 +7,6 @@ module.exports = router
 router.get('/', async (req, res, next) => {
     try {
         let goals = await Goal.findAll()
-        console.log(goals)
         res.json(goals)
     } catch (error) {
         next(error)

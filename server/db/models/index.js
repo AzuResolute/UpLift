@@ -1,6 +1,5 @@
 const User = require('./user')
 const Goal = require('./goal')
-const Task = require('./task')
 
 Goal.belongsTo(User)
 User.hasMany(Goal)
@@ -24,5 +23,5 @@ Goal.hasMany(Goal, {foreignKey: 'parentGoalId'})
  * instead of: const User = require('../db/models/user')
  */
 module.exports = {
-  User, Goal, Task
+  User, Goal
 }
