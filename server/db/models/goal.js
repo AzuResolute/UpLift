@@ -11,7 +11,8 @@ const Goal = db.define('goal',{
         type: Sequelize.STRING
     },
     startDate: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
+        defaultValue: Date.now()
     },
     targetDate: {
         type: Sequelize.DATE,

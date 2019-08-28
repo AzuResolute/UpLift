@@ -40,9 +40,16 @@ async function seed() {
       Goal.create({
         title: 'Persona 5 Royal',
         message: 'ITS COMING OUT',
-        startDate: Date.now(),
+        startDate: new Date(2019, 7, 27),
         targetDate: new Date(2020, 3, 1),
         userId: 3
+      }),
+      Goal.create({
+        title: 'Attain BS Nursing',
+        message: 'Years of academic and physical hard work finally bears fruit',
+        startDate: new Date(2015, 8, 30),
+        targetDate: new Date(2020, 5, 30),
+        userId: 1
       })
   ])
 
