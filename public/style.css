@@ -12,7 +12,7 @@ label {
 
 nav a {
   display: inline-block;
-  margin: 0.5em;
+  margin: 0.2em;
   color: white;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; 
 }
@@ -22,15 +22,17 @@ form div {
   display: inline-block;
 }
 
-.homepage-container {
+#homepage-container {
   background: url('/images/casey-horner-light.jpg') center center no-repeat;
   background-attachment: fixed;
   position: absolute;
   top: 0px;
   bottom: 0px;
   width: 100%;
+  min-height: 100%;
   background-size: cover;
   padding: 25px;
+  overflow: auto;
 }
 
 #logo img {

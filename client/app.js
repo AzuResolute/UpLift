@@ -5,7 +5,9 @@ import Routes from './routes'
 
 const App = () => {
   return (
-    <div>
+    <div id="homepage-container" style={{
+      height: Math.max(document.innerHeight, 0)
+    }}>
       <Navbar />
       <Routes />
     </div>
