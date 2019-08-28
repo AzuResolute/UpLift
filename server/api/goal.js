@@ -4,7 +4,6 @@ module.exports = router
 // const db = require('../db')
 // const Sequelize = require('sequelize')
 
-// get all
 router.get('/', async (req, res, next) => {
     try {
         let goals = await Goal.findAll()
@@ -27,7 +26,7 @@ router.get('/goal/:goalId/', async (req, res, next) => {
     }
 })
 
-router.get('/user/:userId', async (req, res, next) => {
+router.get('/user/:userId/list', async (req, res, next) => {
     try {
         let goals = await Goal.findAll({
             where: {
