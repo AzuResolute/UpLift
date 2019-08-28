@@ -27,7 +27,7 @@ router.get('/id/:parentGoalId/expanded', async (req, res, next) => {
     try {
         let goal = {}
         let {parentGoalId} = req.params
-        goal.parent = await Goal.findByPk(req.params.goalId)
+        goal.parent = await Goal.findByPk(parentGoalId)
         goal.children = await Goal.findAll({
             where: {
                 parentGoalId
