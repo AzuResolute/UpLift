@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import {Button, ButtonToolbar} from 'react-bootstrap'
 import {getGoalByUserMainThunk} from '../store'
 import Countdown from 'countdown'
 import {connect} from 'react-redux'
