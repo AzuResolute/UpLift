@@ -14,24 +14,21 @@ router.get('/', async (req, res, next) => {
     }
 })
 
-router.get('/id/:goalId', async (req, res, next) => {
-    try {
-        let goal = await Goal.findByPk(req.params.goalId)
-        res.json(goal)
-    } catch (error) {
-        next (error)
-    }
-})
+// router.get('/id/:goalId', async (req, res, next) => {
+//     try {
+//         let goal = await Goal.findByPk(req.params.goalId)
+//         res.json(goal)
+//     } catch (error) {
+//         next (error)
+//     }
+// })
 
-router.get('/id/:parentGoalId/expanded', async (req, res, next) => {
+router.get('/id/:goalId/', async (req, res, next) => {
     try {
-        let goal = {}
-        let {parentGoalId} = req.params
-        goal.parent = await Goal.findByPk(parentGoalId)
-        goal.children = await Goal.findAll({
-            where: {
-                parentGoalId
-            }
+        let goal = await Goal.findByPk(req.params.goalId, {
+            include: [{
+                model: Goal, as: 'milestone'
+            }]
         })
         res.json(goal)
     } catch (error) {

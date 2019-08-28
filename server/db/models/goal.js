@@ -17,6 +17,10 @@ const Goal = db.define('goal',{
         type: Sequelize.DATE,
         allowNull: false
     },
+    mainGoal: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+    },
     userId: {
         type: Sequelize.INTEGER,
         allowNull: false,
