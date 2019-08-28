@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Button, ButtonToolbar} from 'react-bootstrap'
 import {getGoalByUserMainThunk} from '../store'
 import Countdown from 'countdown'
-import { connect } from 'http2';
+import {connect} from 'react-redux'
 
 class CountdownComp extends Component {
     constructor(props) {
@@ -29,7 +29,7 @@ class CountdownComp extends Component {
 
     async componentDidMount() {
         this.interval = setInterval(() => this.setState({ currentTime: Date.now() }), 1000)
-        await this.props.onLoadGoalByUserMain(1)
+        await this.props.onLoadGoalByUserMain(this.props.user.id)
       }
       componentWillUnmount() {
         clearInterval(this.interval);
@@ -40,21 +40,22 @@ class CountdownComp extends Component {
             return <div/>
         }
         const {currentTime} = this.state
-        const {message, targetDate, targetTitle, startDate} = this.state.goals[0]
+        console.log(this.props.goal)
+        const {message, targetDate, title, startDate} = this.props.goal
         return (
             <div className="countdown-container text-center">
                 <div className="row ">
                     <div className="intro col-md-12">
-                        <p style={{'font-size': '2em'}}>{targetTitle}</p>
+                        <p style={{'font-size': '2em'}}>{title}</p>
                         <p>{message}</p>
-                        <p>Target Day: {targetDate.toLocaleDateString()}</p>
+                        <p>Target Day: {new Date(targetDate).toLocaleDateString()}</p>
                     </div>
                 </div>
                 <div className="row">
                     <div className="clock col-md-12">
-                        <p style={{'font-size': '1.75em'}}>{Countdown(targetDate).toString()}</p>
-                        <p>{Countdown(startDate, Date.now(), Countdown.DAYS).toString()} has passed</p>
-                        <p>{Countdown(targetDate, null, Countdown.DAYS).toString()} to go!</p>
+                        <p style={{'font-size': '1.75em'}}>{Countdown(new Date(targetDate)).toLocaleString()}</p>
+                        <p>{Countdown(new Date(startDate), Date.now(), Countdown.DAYS).toString()} has passed</p>
+                        <p>{Countdown(new Date(targetDate), null, Countdown.DAYS).toString()} to go!</p>
                     </div>
                 </div>
             </div>
@@ -63,7 +64,8 @@ class CountdownComp extends Component {
 }
 
 const mapStateToProps = state => ({
-    goal: state.goal
+    goal: state.goal,
+    user: state.user
 })
 
 const mapDispatchToProps = dispatch => ({

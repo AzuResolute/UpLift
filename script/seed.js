@@ -57,17 +57,7 @@ async function seed() {
   ])
 
   console.log(`seeded ${goals.length} goals`)
-
-  // const tasks = await Promise.all([
-  //   Task.create({
-
-  //   })
-  // ])
-
-  // console.log(`seeded ${tasks.length} goal-task relationships`)
-
   console.log(`seeded successfully`)
-
 }
 
 async function runSeed() {
