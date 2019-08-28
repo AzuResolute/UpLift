@@ -20,6 +20,7 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+  color: wheat;
 }
 
 #homepage-container {
@@ -32,7 +33,7 @@ form div {
   min-height: 100%;
   background-size: cover;
   padding: 25px;
-  overflow: auto;
+  overflow: auto
 }
 
 #logo img {
