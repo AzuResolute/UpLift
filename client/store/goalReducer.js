@@ -2,14 +2,25 @@ import axios from 'axios'
 
 const initialState = {}
 
-const GET_GOAL = 'GET_GOAL'
+const GET_GOAL_BY_ID = 'GET_GOAL_BY_ID'
+const GET_GOAL_BY_USER_MAIN = 'GET_GOAL_BY_USER_MAIN'
 
-const getGoal = goal => ({type: GET_GOAL, goal})
+const getGoalByID = goal => ({type: GET_GOAL_BY_ID, goal})
+const getGoalByUserMain = goal => ({type: GET_GOAL_BY_USER_MAIN, goal})
 
-export const getGoalThunk = goalId => async dispatch => {
+export const getGoalByIDThunk = goalId => async dispatch => {
     try {
         const {data} = await axios.get(`/api/goals/goal/${goalId}`)
-        dispatch(getGoal(data))
+        dispatch(getGoalByID(data))
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const getGoalByUserMainThunk = userId => async dispatch => {
+    try {
+        const {data} = await axios.get(`/api/goals/user/${userId}/main`)
+        dispatch(getGoalByUserMain(data))
     } catch (error) {
         console.error(error)
     }
@@ -18,7 +29,8 @@ export const getGoalThunk = goalId => async dispatch => {
 export default function (state = initialState, action) {
     let newState = {...state}
     switch (action.type) {
-        case GET_GOAL:
+        case GET_GOAL_BY_ID:
+        case GET_GOAL_BY_USER_MAIN:
             newState = action.goal
             return newState
         default:

@@ -21,12 +21,14 @@ async function seed() {
         message: 'You\'re almost there, Jan. Hold on baby ko...',
         startDate: new Date(2018, 10, 6),
         targetDate: new Date(2019, 9, 17),
+        mainGoal: true,
         userId: 1
       }),
       Goal.create({
         title: 'Start at ITlize',
         message: 'Launch pad ready, set, GO!',
         targetDate: new Date(2019, 9, 17),
+        mainGoal: true,
         userId: 2
       }),
       Goal.create({
@@ -42,6 +44,7 @@ async function seed() {
         message: 'ITS COMING OUT',
         startDate: new Date(2019, 7, 27),
         targetDate: new Date(2020, 3, 1),
+        mainGoal: true,
         userId: 3
       }),
       Goal.create({

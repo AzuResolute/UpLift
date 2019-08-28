@@ -42,3 +42,20 @@ router.get('/user/:userId', async (req, res, next) => {
         next (error)
     }
 })
+
+router.get('/user/:userId/main', async (req,res, next) => {
+    try {
+        let mainGoal = await Goal.findOne({
+            where: {
+                userId: req.params.userId,
+                mainGoal: true
+            },
+            include: [{
+                model: Goal, as: 'milestone'
+            }]
+        })
+        res.json(mainGoal)
+    } catch (error) {
+        next (error)
+    }
+})

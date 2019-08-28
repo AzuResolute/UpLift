@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import {Button, ButtonToolbar} from 'react-bootstrap'
+import {getGoalByUserMainThunk} from '../store'
 import Countdown from 'countdown'
+import { connect } from 'http2';
 
-export default class CountdownComp extends Component {
+class CountdownComp extends Component {
     constructor(props) {
         super(props)
-    
         this.state = {
             currentTime: Date.now(),
             goals: [
@@ -26,8 +27,9 @@ export default class CountdownComp extends Component {
         }
     }
 
-    componentDidMount() {
-        this.interval = setInterval(() => this.setState({ currentTime: Date.now() }), 1000);
+    async componentDidMount() {
+        this.interval = setInterval(() => this.setState({ currentTime: Date.now() }), 1000)
+        await this.props.onLoadGoalByUserMain(1)
       }
       componentWillUnmount() {
         clearInterval(this.interval);
@@ -59,3 +61,15 @@ export default class CountdownComp extends Component {
         )
     }
 }
+
+const mapStateToProps = state => ({
+    goal: state.goal
+})
+
+const mapDispatchToProps = dispatch => ({
+    onLoadGoalByUserMain: async userId => {
+        await dispatch(getGoalByUserMainThunk(userId))
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(CountdownComp)
