@@ -7,7 +7,7 @@ class CountdownComp extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            currentTime: Date.now(),
+            currentDate: Date.now(),
             goals: [
                 {
                     message: 'You\'re almost there, Jan. Hold on baby ko...',
@@ -27,7 +27,7 @@ class CountdownComp extends Component {
     }
 
     async componentDidMount() {
-        this.interval = setInterval(() => this.setState({ currentTime: Date.now() }), 1000)
+        this.interval = setInterval(() => this.setState({ currentDate: Date.now() }), 1000)
         await this.props.onLoadGoalByUserMain(this.props.user.id)
       }
       componentWillUnmount() {
@@ -38,7 +38,7 @@ class CountdownComp extends Component {
         if (this.state.goals.length === 0) {
             return <div/>
         }
-        const {currentTime} = this.state
+        const {currentDate} = this.state
         console.log(this.props.goal)
         const {message, targetDate, title, startDate} = this.props.goal
         return (
@@ -53,6 +53,7 @@ class CountdownComp extends Component {
                 <div className="row">
                     <div className="clock col-md-12">
                         <p id='countdown'>{Countdown(new Date(targetDate)).toLocaleString()}</p>
+                        {/* Create D3js progress bar here */}
                         <p>{Countdown(new Date(startDate), Date.now(), Countdown.DAYS).toString()} has passed</p>
                         <p>{Countdown(new Date(targetDate), null, Countdown.DAYS).toString()} to go!</p>
                     </div>
