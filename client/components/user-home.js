@@ -10,9 +10,6 @@ export const UserHome = props => {
   // const {email} = props
 
   return (
-    // <div>
-    //   <h3>Welcome, {email}</h3>
-    // </div>
     <div className="d-flex justify-content-center align-items-center flex-column">
       {/* <div className="row">
         <div className="col-md-12">

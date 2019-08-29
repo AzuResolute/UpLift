@@ -54,3 +54,11 @@ form div {
 .clock {
   font-size: 2.5vw;
 }
+
+#countdown-title {
+  font-size: 2em;
+}
+
+#countdown {
+  font-size: 1.75em;
+}

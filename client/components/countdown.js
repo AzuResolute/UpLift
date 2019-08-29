@@ -45,14 +45,14 @@ class CountdownComp extends Component {
             <div className="countdown-container text-center">
                 <div className="row ">
                     <div className="intro col-md-12">
-                        <p style={{'font-size': '2em'}}>{title}</p>
+                        <p id='countdown-title'>{title}</p>
                         <p>{message}</p>
                         <p>Target Day: {new Date(targetDate).toLocaleDateString()}</p>
                     </div>
                 </div>
                 <div className="row">
                     <div className="clock col-md-12">
-                        <p style={{'font-size': '1.75em'}}>{Countdown(new Date(targetDate)).toLocaleString()}</p>
+                        <p id='countdown'>{Countdown(new Date(targetDate)).toLocaleString()}</p>
                         <p>{Countdown(new Date(startDate), Date.now(), Countdown.DAYS).toString()} has passed</p>
                         <p>{Countdown(new Date(targetDate), null, Countdown.DAYS).toString()} to go!</p>
                     </div>
