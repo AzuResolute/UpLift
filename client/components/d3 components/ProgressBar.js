@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import d3 from 'd3'
 
 export default class ProgressBar extends Component {
     // constructor(props) {
@@ -34,11 +35,71 @@ export default class ProgressBar extends Component {
     }
 }
 
-const RenderProgressBar = (canvas, dimensions, data) => {
+const RenderD3ProgressBar = (canvas, data) => {
 
-    const svg = canvas
-        .append('svg')
-        .attr('width', )
+    const width = Math.min(700, window.innerWidth * 0.8)
+    const height = 200
+
+    
+    const scaling = d3
+        .scaleLinear()
+        .domain([0, data.target.startDate])
+        .range([width, data.target.endDate])
+
+
+        var svg = d3.select('.progress')
+		.append('svg')
+		.attr('height', 100)
+		.attr('width', 500);
+
+	var states = ['started', 'inProgress', 'completed'],
+	    segmentWidth = 100,
+		currentState = 'started';
+
+	var colorScale = d3.scale.ordinal()
+		.domain(states)
+		.range(['yellow', 'orange', 'green']);
+
+	svg.append('rect')
+		.attr('class', 'bg-rect')
+		.attr('rx', 10)
+		.attr('ry', 10)
+		.attr('fill', 'gray')
+		.attr('height', 15)
+		.attr('width', function(){
+			return segmentWidth * states.length;
+		})
+		.attr('x', 0);
+
+	var progress = svg.append('rect')
+					.attr('class', 'progress-rect')
+					.attr('fill', function(){
+						return colorScale(currentState);
+					})
+					.attr('height', 15)
+					.attr('width', 0)
+					.attr('rx', 10)
+					.attr('ry', 10)
+					.attr('x', 0);
+
+	progress.transition()
+		.duration(1000)
+		.attr('width', function(){
+			var index = states.indexOf(currentState);
+			return (index + 1) * segmentWidth;
+		});
+
+	function moveProgressBar(state){
+		progress.transition()
+			.duration(1000)
+			.attr('fill', function(){
+				return colorScale(state);
+			})
+			.attr('width', function(){
+				var index = states.indexOf(state);
+				return (index + 1) * segmentWidth;
+			});
+	}
 }
 
 const getDimensions = () => {
