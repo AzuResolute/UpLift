@@ -10,13 +10,18 @@ export default class ProgressBar extends Component {
     //     }
     // }
 
-    componentDidUpdate (prevState, prevProps) {
-        // We will need to call this to determine when progress bar will re-render
-        // To avoid utter chaos
-    }
+    // componentDidUpdate (prevState, prevProps) {
+    //     // We will need to call this to determine when progress bar will re-render
+    //     // To avoid utter chaos
+    // }
 
-    shouldComponentUpdate() {
-        return false
+    // shouldComponentUpdate() {
+    //     return false
+    // }
+
+    async componentDidMount() {
+        let canvas = document.getElementById('canvas')
+        await RenderD3ProgressBar(canvas)
     }
 
     render() {
@@ -29,25 +34,30 @@ export default class ProgressBar extends Component {
 
         return (
             <div>
-                
+                <select className="progressSelector" onChange="moveProgressBar(value)">
+                    <option value="started" selected>Started</option>
+                    <option value="inProgress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+                <div id='canvas'/>
             </div>
         )
     }
 }
 
-const RenderD3ProgressBar = (canvas, data) => {
+function RenderD3ProgressBar (canvas) {
 
     const width = Math.min(700, window.innerWidth * 0.8)
     const height = 200
 
     
-    const scaling = d3
-        .scaleLinear()
-        .domain([0, data.target.startDate])
-        .range([width, data.target.endDate])
+    // const scaling = d3
+    //     .scaleLinear()
+    //     .domain([0, data.target.startDate])
+    //     .range([width, data.target.endDate])
 
 
-        var svg = d3.select('.progress')
+        var svg = d3.select(canvas)
 		.append('svg')
 		.attr('height', 100)
 		.attr('width', 500);
@@ -89,17 +99,6 @@ const RenderD3ProgressBar = (canvas, data) => {
 			return (index + 1) * segmentWidth;
 		});
 
-	function moveProgressBar(state){
-		progress.transition()
-			.duration(1000)
-			.attr('fill', function(){
-				return colorScale(state);
-			})
-			.attr('width', function(){
-				var index = states.indexOf(state);
-				return (index + 1) * segmentWidth;
-			});
-	}
 }
 
 const getDimensions = () => {

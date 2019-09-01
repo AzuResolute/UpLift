@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {getGoalByUserMainThunk} from '../store'
 import Countdown from 'countdown'
+import ProgressBar from './d3 components/ProgressBar'
 import {connect} from 'react-redux'
 
 class CountdownComp extends Component {
@@ -58,6 +59,7 @@ class CountdownComp extends Component {
                         <p>{Countdown(new Date(targetDate), null, Countdown.DAYS).toString()} to go!</p>
                     </div>
                 </div>
+                <ProgressBar />
             </div>
         )
     }
