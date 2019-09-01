@@ -2,13 +2,13 @@ import React, { Component } from 'react'
 import d3 from 'd3'
 
 export default class ProgressBar extends Component {
-    // constructor(props) {
-    //     super(props)
+    constructor(props) {
+        super(props)
     
-    //     this.state = {
-    //         currentDate: Date.now()
-    //     }
-    // }
+        this.state = {
+            currentDate: Date.now()
+        }
+    }
 
     // componentDidUpdate (prevState, prevProps) {
     //     // We will need to call this to determine when progress bar will re-render
@@ -57,10 +57,10 @@ function RenderD3ProgressBar (canvas) {
     //     .range([width, data.target.endDate])
 
 
-        var svg = d3.select(canvas)
+    var svg = d3.select(canvas)
 		.append('svg')
-		.attr('height', 100)
-		.attr('width', 500);
+		.attr('height', height)
+		.attr('width', width);
 
 	var states = ['started', 'inProgress', 'completed'],
 	    segmentWidth = 100,
@@ -97,12 +97,17 @@ function RenderD3ProgressBar (canvas) {
 		.attr('width', function(){
 			var index = states.indexOf(currentState);
 			return (index + 1) * segmentWidth;
-		});
+        });
 
-}
-
-const getDimensions = () => {
-    return {
-        width: parent.innerWidth
+    function moveProgressBar(state){
+        progress.transition()
+            .duration(1000)
+            .attr('fill', function(){
+                return colorScale(state);
+            })
+            .attr('width', function(){
+                var index = states.indexOf(state);
+                return (index + 1) * segmentWidth;
+                });
     }
 }
