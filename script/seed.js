@@ -20,7 +20,7 @@ async function seed() {
         title: 'Freedom from NYCRN',
         message: 'You\'re almost there, Jan. Hold on baby ko...',
         startDate: new Date(2018, 10, 6),
-        targetDate: new Date(2019, 9, 16),
+        targetDate: new Date(2019, 9, 15),
         mainGoal: true,
         userId: 1
       }),

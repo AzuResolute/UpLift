@@ -31,9 +31,10 @@ class CountdownComp extends Component {
         this.interval = setInterval(() => this.setState({ currentDate: Date.now() }), 1000)
         await this.props.onLoadGoalByUserMain(this.props.user.id)
       }
-      componentWillUnmount() {
+
+    componentWillUnmount() {
         clearInterval(this.interval);
-      }
+    }
     
     render() {
         if (this.state.goals.length === 0) {

@@ -6,35 +6,67 @@ class ProgressBar extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            milestones: []
         }
     }
 
-    async componentDidUpdate (prevState, prevProps) {
-        if (this.props.goal !== prevProps.goal) {
-        const canvas = d3.select('#bar')
-        await RenderD3ProgressBar(canvas, this.props.goal)
+    componentDidUpdate = async (prevState, prevProps) => {
+        let {goal} = this.props
+        if (goal !== prevProps.goal) {
+            let milestonesArray = [
+                {
+                    name: 'Start!',
+                    date: goal.startDate
+                }
+            ]
+            goal.milestones.forEach(milestone => {
+                milestonesArray.push({
+                    name: milestone.title,
+                    date: milestone.targetDate
+                })
+            })
+            milestonesArray.push({
+                name: goal.title,
+                date: goal.targetDate
+            })
+            console.log('goal ---> ', goal)
+            console.log('Milestone Array ---> ', milestonesArray)
+                await this.setState({
+                    milestones: milestonesArray
+                })
+            console.log(this.state)
+            const canvas = d3.select('#bar')
+            await RenderD3ProgressBar(canvas, goal)
         }
     }
 
     render() {
-
         return (
             <div>
-                <div id='bar'/>
-            </div>
+                    <div id='bar'/>
+                    <div>
+
+                    </div>
+                </div>
         )
     }
 }
 
 function RenderD3ProgressBar (canvas, data) {
-
+    
     const width = Math.min(700, window.innerWidth * 0.8)
     const height = 50
     
+    if(document.getElementById('bar').childNodes.length < 0){
+        document.getElementById('bar').removeChild(
+            document.getElementById('bar').childNodes[0]
+        )
+    }
+
     let svg = canvas
-    .append('svg')
-    .attr('height', height)
-    .attr('width', width);
+        .append('svg')
+        .attr('height', height)
+        .attr('width', width);
 
 	svg.append('rect')
 		.attr('class', 'bg-rect')
