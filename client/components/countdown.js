@@ -51,7 +51,7 @@ class CountdownComp extends Component {
                         <p>Target Day: {new Date(targetDate).toLocaleDateString()}</p>
                     </div>
                 </div>
-                <div className="row">
+                <div className="row mb-4">
                     <div className="clock col-md-12">
                         <p id='countdown'>{Countdown(new Date(targetDate)).toLocaleString()}</p>
                         {/* Create D3js progress bar here */}
