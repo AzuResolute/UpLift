@@ -1,18 +1,19 @@
 import React, { Component } from 'react'
-import d3 from 'd3'
+import * as d3 from 'd3'
 
 export default class ProgressBar extends Component {
     constructor(props) {
         super(props)
     
         this.state = {
-            currentDate: Date.now()
+            progressState: 'started'
         }
     }
 
-    // componentDidUpdate (prevState, prevProps) {
+    // async componentDidUpdate (prevState, prevProps) {
     //     // We will need to call this to determine when progress bar will re-render
     //     // To avoid utter chaos
+
     // }
 
     // shouldComponentUpdate() {
@@ -20,7 +21,7 @@ export default class ProgressBar extends Component {
     // }
 
     async componentDidMount() {
-        let canvas = document.getElementById('canvas')
+        const canvas = d3.select('#bar')
         await RenderD3ProgressBar(canvas)
     }
 
@@ -39,7 +40,7 @@ export default class ProgressBar extends Component {
                     <option value="inProgress">In Progress</option>
                     <option value="completed">Completed</option>
                 </select>
-                <div id='canvas'/>
+                <div id='bar'/>
             </div>
         )
     }
@@ -57,7 +58,7 @@ function RenderD3ProgressBar (canvas) {
     //     .range([width, data.target.endDate])
 
 
-    var svg = d3.select(canvas)
+    var svg = canvas
 		.append('svg')
 		.attr('height', height)
 		.attr('width', width);
@@ -66,7 +67,7 @@ function RenderD3ProgressBar (canvas) {
 	    segmentWidth = 100,
 		currentState = 'started';
 
-	var colorScale = d3.scale.ordinal()
+	var colorScale = d3.scaleOrdinal()
 		.domain(states)
 		.range(['yellow', 'orange', 'green']);
 
