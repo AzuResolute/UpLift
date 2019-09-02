@@ -40,7 +40,6 @@ class CountdownComp extends Component {
             return <div/>
         }
         const {currentDate} = this.state
-        console.log(this.props.goal)
         const {message, targetDate, title, startDate} = this.props.goal
         return (
             <div className="countdown-container text-center">
@@ -59,7 +58,7 @@ class CountdownComp extends Component {
                         <p>{Countdown(new Date(targetDate), null, Countdown.DAYS).toString()} to go!</p>
                     </div>
                 </div>
-                <ProgressBar />
+                {this.props.goal ? <ProgressBar /> : <div/>}
             </div>
         )
     }

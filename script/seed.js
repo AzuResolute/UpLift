@@ -53,6 +53,22 @@ async function seed() {
         startDate: new Date(2015, 8, 30),
         targetDate: new Date(2020, 5, 30),
         userId: 1
+      }),
+      Goal.create({
+        title: 'Trusted to be Charge Nurse',
+        message: 'Yaaaaay!',
+        startDate: new Date(2018, 10, 6),
+        targetDate: new Date(2019, 3, 1),
+        userId: 1,
+        parentGoalId: 1
+      }),
+      Goal.create({
+        title: 'Trusted to be Supervisor',
+        message: 'Yaaaaay!',
+        startDate: new Date(2018, 10, 6),
+        targetDate: new Date(2019, 5, 1),
+        userId: 1,
+        parentGoalId: 1
       })
   ])
 
