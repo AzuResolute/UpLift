@@ -20,15 +20,13 @@ class ProgressBar extends Component {
     componentDidUpdate = async (prevState, prevProps) => {
         let {goal} = this.props
         if (goal !== prevProps.goal) {
-            let milestonesArr = this.setMilestones(goal)
-            console.log(this.state)
+            this.setMilestones(goal)
             const canvas = d3.select('#bar')
-            await RenderD3ProgressBar(canvas, goal)
+            await RenderD3ProgressBar(canvas, goal, this.state.milestones)
         }
     }
 
     setMilestones = (goal) => {
-        console.log('initial goal ---> ', goal)
         let milestonesArray = [
             {
                 name: 'Start!',
@@ -58,13 +56,14 @@ class ProgressBar extends Component {
         }
         return (
             <div>
-                <div id='bar'/>
+                <div id='bar mx-4'/>
             </div>
         )
     }
 }
 
-function RenderD3ProgressBar (canvas, data) {
+function RenderD3ProgressBar (canvas, goal, milestones
+    ) {
     
     const width = Math.min(700, window.innerWidth * 0.8)
     const height = 50
@@ -98,11 +97,14 @@ function RenderD3ProgressBar (canvas, data) {
         .attr('ry', 10)
         .attr('x', 0);
 
+    // let mileStoneNodes = svg.append('circle')
+    //     .data(milestones)
+
 	progress.transition()
 		.duration(3000)
         .attr('width', () => {
             let currentDate = Date.now()
-            let {startDate, targetDate} = data
+            let {startDate, targetDate} = goal
             startDate = new Date(startDate).getTime()
             targetDate = new Date(targetDate).getTime()
             let timePassed = (currentDate - startDate) / (targetDate - startDate)
