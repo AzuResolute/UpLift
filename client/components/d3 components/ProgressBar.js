@@ -10,44 +10,56 @@ class ProgressBar extends Component {
         }
     }
 
+    shouldComponentUpdate() {
+        if(this.state.milestones.length === 0) {
+            return true
+        }
+        else return false
+    }
+
     componentDidUpdate = async (prevState, prevProps) => {
         let {goal} = this.props
         if (goal !== prevProps.goal) {
-            let milestonesArray = [
-                {
-                    name: 'Start!',
-                    date: goal.startDate
-                }
-            ]
-            goal.milestones.forEach(milestone => {
-                milestonesArray.push({
-                    name: milestone.title,
-                    date: milestone.targetDate
-                })
-            })
-            milestonesArray.push({
-                name: goal.title,
-                date: goal.targetDate
-            })
-            console.log('goal ---> ', goal)
-            console.log('Milestone Array ---> ', milestonesArray)
-                await this.setState({
-                    milestones: milestonesArray
-                })
+            let milestonesArr = this.setMilestones(goal)
             console.log(this.state)
             const canvas = d3.select('#bar')
             await RenderD3ProgressBar(canvas, goal)
         }
     }
 
+    setMilestones = (goal) => {
+        console.log('initial goal ---> ', goal)
+        let milestonesArray = [
+            {
+                name: 'Start!',
+                date: goal.startDate
+            }
+        ]
+        goal.milestone.map(ms => {
+            milestonesArray.push({
+                name: ms.title,
+                date: ms.targetDate
+            })
+        })
+        milestonesArray.push({
+            name: goal.title,
+            date: goal.targetDate
+        })
+        this.setState({
+            milestones: milestonesArray
+        })
+        return milestonesArray
+    }
+
     render() {
+        const {goal} = this.props
+        if(!goal.title) {
+            return <div />
+        }
         return (
             <div>
-                    <div id='bar'/>
-                    <div>
-
-                    </div>
-                </div>
+                <div id='bar'/>
+            </div>
         )
     }
 }
@@ -57,7 +69,7 @@ function RenderD3ProgressBar (canvas, data) {
     const width = Math.min(700, window.innerWidth * 0.8)
     const height = 50
     
-    if(document.getElementById('bar').childNodes.length < 0){
+    if(document.getElementById('bar').childNodes.length > 0){
         document.getElementById('bar').removeChild(
             document.getElementById('bar').childNodes[0]
         )
