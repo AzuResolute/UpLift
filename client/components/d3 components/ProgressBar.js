@@ -56,14 +56,13 @@ class ProgressBar extends Component {
         }
         return (
             <div>
-                <div id='bar mx-4'/>
+                <div id='bar' className='mx-4'/>
             </div>
         )
     }
 }
 
-function RenderD3ProgressBar (canvas, goal, milestones
-    ) {
+function RenderD3ProgressBar (canvas, goal, milestones) {
     
     const width = Math.min(700, window.innerWidth * 0.8)
     const height = 50
